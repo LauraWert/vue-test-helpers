@@ -52,7 +52,7 @@
     "webpack-cli": "^3.0.3"
   },
   "peerDependencies": {
-    "@laura-wert/vue-helpers": "^0.6.0",
+    "@laura-wert/vue-helpers": "^1.0.0",
     "@vue/test-utils": "1.0.0-beta.12",
     "quasar-framework": "^0.15.8",
     "vue": "^2.5.16"
