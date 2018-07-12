@@ -54,8 +54,7 @@
   "peerDependencies": {
     "@laura-wert/vue-helpers": "^1.0.0",
     "@vue/test-utils": "1.0.0-beta.12",
-    "quasar-framework": "^0.15.8",
-    "vue": "^2.5.16"
+    "quasar-cli": "^0.15.0"
   },
   "files": [
     "package.json",
