@@ -1,4 +1,4 @@
-const { VueLoaderPlugin } = require('vue-loader') // installed via npm
+const {VueLoaderPlugin} = require('vue-loader') // installed via npm
 const path = require('path')
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist/'),
     filename: 'index.js',
     libraryTarget: 'umd',
-    library: 'uw-vue-helpers',
+    library: 'vue-test-helpers',
   },
   module: {
     rules: [
@@ -27,7 +27,6 @@ module.exports = {
   externals: {
     quasar: 'quasar',
     '@vue/test-utils': '@vue/test-utils',
-    '@laura-wert/vue-helpers': '@laura-wert/vue-helpers',
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

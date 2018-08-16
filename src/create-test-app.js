@@ -1,5 +1,5 @@
-import { createLocalVue, TransitionStub } from '@vue/test-utils'
-import { fullNameFilter, dateFilter } from '@laura-wert/vue-helpers'
+import { createLocalVue } from '@vue/test-utils'
+import ExtendedTransitionStub from './stubs/ExtendedTransitionStub'
 import quasar from 'quasar'
 
 export function createTestApp (options = {}) {
@@ -11,10 +11,8 @@ export function createTestApp (options = {}) {
   localVue.use(quasar)
 
   const plugins = options.plugins || []
-  plugins.push(fullNameFilter)
-  plugins.push(dateFilter)
 
-  localVue.component('transition', TransitionStub)
+  localVue.component('transition', ExtendedTransitionStub) // needs to be changed to config.stubs.transition if test-utils gets updated
 
   plugins.forEach(plugin => plugin({app, router, store, Vue: localVue}))
   return localVue

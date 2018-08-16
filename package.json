@@ -16,6 +16,9 @@
     "test": "jest",
     "test-ci": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
   },
+  "dependencies": {
+    "quasar-framework": "^0.16.0"
+  },
   "devDependencies": {
     "@laura-wert/git-clean-status": "^1.0.0",
     "babel-cli": "^6.26.0",
@@ -47,14 +50,11 @@
     "vue-loader": "^15.2.4",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
-    "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^4.11.1",
     "webpack-cli": "^3.0.3"
   },
   "peerDependencies": {
-    "@laura-wert/vue-helpers": "^1.0.0",
-    "@vue/test-utils": "1.0.0-beta.12",
-    "quasar-cli": "^0.15.0"
+    "@vue/test-utils": "^1.0.0-beta.12"
   },
   "files": [
     "package.json",
