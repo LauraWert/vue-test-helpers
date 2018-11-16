@@ -1,5 +1,12 @@
-export function findRouterLinkStub (wrapper, name) {
-  const find = wrapper.findAll({name: 'RouterLinkStub'}).filter(w => w.isVisible() && w.element.attributes !== undefined && w.attributes().name === name)
+export function findRouterLinkStub(wrapper, name) {
+  const find = wrapper
+    .findAll({name: 'RouterLinkStub'})
+    .filter(
+      w => w.isVisible() &&
+        w.element.attributes !== undefined &&
+        w.attributes().name === name,
+    )
+
   if (find.length === 0) {
     return undefined
   }
@@ -9,7 +16,7 @@ export function findRouterLinkStub (wrapper, name) {
   return find.at(0)
 }
 
-export function findRouterLinkItemToName (wrapper, name) {
+export function findRouterLinkItemToName(wrapper, name) {
   const item = findRouterLinkStub(wrapper, name)
   if (!item) {
     return undefined

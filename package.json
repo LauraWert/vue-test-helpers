@@ -10,55 +10,54 @@
     "access": "public"
   },
   "scripts": {
-    "build": "yarn lint && rimraf ./dist && webpack --config ./webpack.config.js",
+    "build": "yarn lint && yarn clean && yarn build:ts && yarn build:main",
+    "build:ts": "tsc -p . && rm -rf ./lib/tests",
+    "build:main": "webpack --config ./webpack.config.js",
+    "clean": "rimraf ./dist && rimraf ./lib",
     "release": "yarn git-clean-status &&  yarn build && yarn publish",
-    "lint": "eslint --ext .js,.vue src test",
-    "test": "jest",
-    "test-ci": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
+    "lint": "vue-cli-service lint",
+    "test": "vue-cli-service test:unit",
+    "test-ci": "yarn cover  && cat ./coverage/lcov.info | yarn codacy-coverage",
+    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcov --reporter=text vue-cli-service test:unit"
   },
   "dependencies": {
-    "quasar-framework": "^0.16.0"
+    "@vue/test-utils": "^1.0.0-beta.25",
+    "dts-gen": "^0.5.7",
+    "quasar-framework": "^0.16.0",
+    "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
     "@laura-wert/git-clean-status": "^1.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "8.2.1",
-    "babel-jest": "^22.4.1",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "codacy-coverage": "^3.0.0",
-    "css-loader": "^0.28.11",
-    "eslint": "4.15.0",
-    "eslint-config-standard": "10.2.1",
-    "eslint-friendly-formatter": "3.0.0",
-    "eslint-loader": "1.7.1",
-    "eslint-plugin-html": "^4.0.2",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "5.2.0",
-    "eslint-plugin-promise": "3.4.0",
-    "eslint-plugin-standard": "3.0.1",
-    "eslint-plugin-vue": "4.5.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.0",
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-typescript": "^3.0.5",
+    "@vue/cli-plugin-unit-mocha": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "babel-plugin-istanbul": "^5.1.0",
+    "chai": "^4.2.0",
+    "codacy-coverage": "^3.2.0",
+    "cross-env": "^5.2.0",
     "husky": "^1.0.0-rc.2",
-    "jest": "^22.4.2",
-    "lint-staged": "^7.0.4",
+    "lint-staged": "^7.3.0",
+    "nyc": "^13.1.0",
     "rimraf": "^2.6.2",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "vue-jest": "^2.1.1",
-    "vue-loader": "^15.2.4",
-    "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.11.1",
-    "webpack-cli": "^3.0.3"
+    "tslint": "5.10.0",
+    "typescript": "^3.1.3",
+    "vue-class-component": "^6.3.2",
+    "vue-property-decorator": "^7.2.0",
+    "vue-template-compiler": "^2.5.17",
+    "webpack-cli": "^3.1.2"
   },
   "peerDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12"
   },
   "files": [
     "package.json",
-    "dist/"
+    "dist/",
+    "lib/"
   ],
   "browserslist": [
     "> 1%",
@@ -71,9 +70,26 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --fix",
+    "src/*.{js,vue,ts}": [
+      "vue-cli-service lint --no-fix",
       "git add"
     ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "include": [
+      "src/**/*.{js,ts,vue}"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "extension": [
+      ".js",
+      ".ts",
+      ".vue"
+    ],
+    "cache": true,
+    "all": true
   }
 }

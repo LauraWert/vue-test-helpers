@@ -3,7 +3,7 @@ import { TransitionStub } from '@vue/test-utils'
 export default {
   name: 'ExtendedTransitionStub',
   extends: TransitionStub,
-  options () {
+  options() {
     /**
      * Added becaue @vue/test-utils checks if stub is a string or component.
      * according to them a component has a render, options or template attribute
@@ -12,12 +12,12 @@ export default {
     return {}
   },
   methods: {
-    triggerEnterHooks () {
+    triggerEnterHooks() {
       this.$emit('beforeEnter')
       this.$emit('enter')
       this.$emit('afterEnter')
     },
-    triggerLeaveHooks () {
+    triggerLeaveHooks() {
       this.$emit('beforeLeave')
       this.$emit('leave')
       this.$emit('afterLeave')

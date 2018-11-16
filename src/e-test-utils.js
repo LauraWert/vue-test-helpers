@@ -1,14 +1,14 @@
 import { mount, shallow } from '@vue/test-utils'
 
-export function eMount (component, options) {
+export function eMount(component, options) {
   return extendWrapper(mount(component, options))
 }
 
-export function eShallow (component, options) {
+export function eShallow(component, options) {
   return extendWrapper(shallow(component, options))
 }
 
-export function extendWrapper (wrapper) {
+export function extendWrapper(wrapper) {
   /**
    * Get an input element
    * @param {String} name of input element
@@ -78,7 +78,7 @@ export function extendWrapper (wrapper) {
    * @parem {Object} A list of input names with their expected values
    */
   wrapper.validateInputs = (validatorCallbackName, expect, obj) => {
-    for (var i in obj) {
+    for (const i of Object.keys(obj)) {
       expect(this[validatorCallbackName](i)).toEqual(obj[i])
     }
   }
@@ -86,7 +86,8 @@ export function extendWrapper (wrapper) {
   /**
    * Validate the values in a quasar form
    * @param {Function} expect The jest expect function
-   * @param {Object} formValues An object with input types, each input type contains a list of inputs and expected values
+   * @param {Object} formValues An object with input types,
+   *    each input type contains a list of inputs and expected values
    */
   wrapper.validateForm = (expect, formValues) => {
     let keyAndGetter = {
@@ -96,8 +97,10 @@ export function extendWrapper (wrapper) {
       ints: 'getIntFromInput',
       texts: 'getTextFromInput',
     }
-    for (let key in keyAndGetter) {
-      key in formValues && wrapper.validateInputs(keyAndGetter[key], expect, formValues[key])
+    for (const key of Object.keys(keyAndGetter)) {
+      if (key in formValues) {
+        wrapper.validateInputs(keyAndGetter[key], expect, formValues[key])
+      }
     }
   }
 

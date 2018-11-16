@@ -1,8 +1,12 @@
-const {VueLoaderPlugin} = require('vue-loader') // installed via npm
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const path = require('path')
 
 module.exports = {
   mode: 'production',
+  externals: {
+    quasar: 'quasar',
+    '@vue/test-utils': '@vue/test-utils',
+  },
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, './dist/'),
@@ -10,32 +14,57 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'vue-test-helpers',
   },
+  resolve: {
+    extensions: [
+      '.js',
+      '.jsx',
+      '.vue',
+      '.ts',
+      '.tsx',
+    ],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [path.resolve(__dirname, './src')],
-      },
-      {
-        test: /\.vue$/,
-        include: [path.resolve(__dirname, './src')],
-        loader: 'vue-loader',
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'cache-loader',
+            options: {
+              cacheDirectory: '/node_modules/.cache/ts-loader',
+              cacheIdentifier: '401271e7',
+            },
+          },
+          /* config.module.rule('ts').use('babel-loader') */
+          {
+            loader: 'babel-loader',
+          },
+          /* config.module.rule('ts').use('ts-loader') */
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: [
+                '\\.vue$',
+              ],
+              happyPackMode: false,
+            },
+          },
+        ],
       },
     ],
   },
-  externals: {
-    quasar: 'quasar',
-    '@vue/test-utils': '@vue/test-utils',
-  },
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      quasar: path.resolve(__dirname, '../node_modules/quasar-framework/'),
-      src: path.resolve(__dirname, './src'),
-    },
-  },
   plugins: [
-    new VueLoaderPlugin(),
+    new ForkTsCheckerWebpackPlugin(
+      {
+        vue: true,
+        tslint: true,
+        formatter: 'codeframe',
+        checkSyntacticErrors: false,
+        compilerOptions: {
+          allowJs: true,
+        },
+      },
+    ),
   ],
 }

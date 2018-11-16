@@ -66,3 +66,7 @@ fabric.properties
 dist/
 
 coverage/
+
+lib/
+
+\.nyc_output/
