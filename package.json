@@ -11,20 +11,19 @@
   },
   "scripts": {
     "build": "yarn lint && yarn clean && yarn build:ts && yarn build:main",
-    "build:ts": "tsc -p . && rm -rf ./lib/tests",
+    "build:ts": "tsc -p . --declaration --emitDeclarationOnly --allowJs false && rm -rf ./lib/tests",
     "build:main": "webpack --config ./webpack.config.js",
     "clean": "rimraf ./dist && rimraf ./lib",
     "release": "yarn git-clean-status &&  yarn build && yarn publish",
-    "lint": "vue-cli-service lint",
+    "lint": "tslint --project .",
     "test": "vue-cli-service test:unit",
-    "test-ci": "yarn cover  && cat ./coverage/lcov.info | yarn codacy-coverage",
-    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcov --reporter=text vue-cli-service test:unit"
+    "test-ci": "yarn cover && cat ./coverage/lcov.info | yarn codacy-coverage",
+    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcovonly vue-cli-service test:unit"
   },
   "dependencies": {
-    "@vue/test-utils": "^1.0.0-beta.25",
-    "dts-gen": "^0.5.7",
-    "quasar-framework": "^0.16.0",
-    "vue": "^2.5.17"
+    "@vue/test-utils": ">=1.0.0-beta.12",
+    "quasar-framework": ">=0.16.0",
+    "vue": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -78,6 +77,10 @@
   "nyc": {
     "check-coverage": true,
     "per-file": true,
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0,
     "include": [
       "src/**/*.{js,ts,vue}"
     ],

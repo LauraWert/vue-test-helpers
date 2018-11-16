@@ -51,6 +51,11 @@
       true,
       "never"
     ],
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
+    "no-angle-bracket-type-assertion": false,
     "no-console": {
       "severity": "warning"
     },

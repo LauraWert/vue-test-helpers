@@ -3,3 +3,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/7b94e96279234d0aaca6af5b87148301)](https://www.codacy.com/app/LauraWert/vue-helpers?utm_source=github.com&utm_medium=referral&utm_content=LauraWert/vue-helpers&utm_campaign=Badge_Coverage)
 
 vue-test-helpers
+
+tslint jsrules can be set to true when the following PR is released
+https://github.com/palantir/tslint/pull/3641

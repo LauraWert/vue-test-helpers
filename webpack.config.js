@@ -6,6 +6,7 @@ module.exports = {
   externals: {
     quasar: 'quasar',
     '@vue/test-utils': '@vue/test-utils',
+    vue: 'vue',
   },
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
@@ -61,9 +62,6 @@ module.exports = {
         tslint: true,
         formatter: 'codeframe',
         checkSyntacticErrors: false,
-        compilerOptions: {
-          allowJs: true,
-        },
       },
     ),
   ],
