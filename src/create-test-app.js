@@ -1,5 +1,6 @@
 import { createLocalVue } from '@vue/test-utils'
 import quasar from 'quasar'
+import Vue from 'vue'
 import ExtendedTransitionStub from './stubs/ExtendedTransitionStub'
 
 export function createTestApp(options = {}) {
@@ -7,8 +8,8 @@ export function createTestApp(options = {}) {
   const router = options.router || null
   const store = options.store || null
 
+  Vue.use(quasar)
   const localVue = createLocalVue()
-  localVue.use(quasar)
 
   const plugins = options.plugins || []
   plugins.forEach(plugin => plugin({app, router, store, Vue: localVue}))
