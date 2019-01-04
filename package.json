@@ -1,6 +1,6 @@
 {
   "name": "@laura-wert/vue-test-helpers",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "productName": "",
   "license": "MIT",
@@ -20,8 +20,7 @@
     "test-ci": "yarn cover && cat ./coverage/lcov.info | yarn codacy-coverage",
     "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcovonly vue-cli-service test:unit"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12",
     "quasar-framework": ">=0.16.0",
