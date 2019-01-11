@@ -1,18 +1,8 @@
 import { createLocalVue } from '@vue/test-utils'
 import quasar from 'quasar'
 import Vue, { VueConstructor } from 'vue'
-import ExtendedTransitionStub from './stubs/ExtendedTransitionStub'
-
-interface IPluginOptions {
-  app?: object
-  router?: object
-  store?: object
-}
-
-interface ICreateTestAppOptions extends IPluginOptions {
-  // tslint:disable-next-line:no-any
-  plugins?: any
-}
+import ExtendedTransitionStub from './stubs/ExtendedTransitionStub.js'
+import { ICreateTestAppOptions } from './types'
 
 export function createTestApp(options: ICreateTestAppOptions = {}): VueConstructor<Vue> {
   const app = options.app || null

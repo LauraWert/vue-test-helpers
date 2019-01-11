@@ -1,8 +1,11 @@
-export function findRouterLinkStub(wrapper, name) {
+import { Wrapper } from '@vue/test-utils'
+import { Vue } from 'vue/types/vue'
+
+export function findRouterLinkStub(wrapper: Wrapper<Vue>, name: string): Wrapper<Vue> | undefined | never {
   const find = wrapper
     .findAll({name: 'RouterLinkStub'})
     .filter(
-      w => w.isVisible() &&
+      (w: Wrapper<Vue>) => w.isVisible() &&
         w.element.attributes !== undefined &&
         w.attributes().name === name,
     )
@@ -16,7 +19,7 @@ export function findRouterLinkStub(wrapper, name) {
   return find.at(0)
 }
 
-export function findRouterLinkItemToName(wrapper, name) {
+export function findRouterLinkItemToName(wrapper: Wrapper<Vue>, name: string): string | undefined {
   const item = findRouterLinkStub(wrapper, name)
   if (!item) {
     return undefined

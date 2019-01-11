@@ -1,5 +1,4 @@
 import { Wrapper } from '@vue/test-utils'
-import { PluginFunction } from 'vue'
 import { Vue } from 'vue/types/vue'
 import ExpectStatic = Chai.ExpectStatic
 
@@ -23,9 +22,13 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
   validateForm(expect: ExpectStatic, obj: { [_: string]: { [_: string]: string } }): void
 }
 
-export interface IOptions<T> {
-  app: object
-  router: object
-  store: object
-  // plugins: PluginFunction[]
+export interface IPluginOptions {
+  app?: object
+  router?: object
+  store?: object
+}
+
+export interface ICreateTestAppOptions extends IPluginOptions {
+  // tslint:disable-next-line:no-any
+  plugins?: any
 }

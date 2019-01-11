@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-any
-function extendCypress(Cypress: any, cy: any): void {
+export function extendCypress(Cypress: any, cy: any): void {
   /**
    * Searches HTML dom for one or more elements by name and data-name property
    * @param {parts} set of strings which together form the element name
@@ -57,4 +57,32 @@ function extendCypress(Cypress: any, cy: any): void {
   Cypress.Commands.add('loadStore', () => {
     return cy.window().its('app.store')
   })
+
+  /**
+   * Clicks on an element of popover
+   * @param {subject} HTML element
+   * @param {labelOrIndex} string | number name or index of options to be clicked
+   * @returns void
+   */
+  Cypress.Commands.add(
+    'selectOption',
+    {prevSubject: 'element'},
+    (subject: HTMLElement, labelOrIndex: string | number) => {
+      let searchTermArray: Array<string | number> = []
+      if (typeof labelOrIndex === 'string' || typeof labelOrIndex === 'number') {
+        searchTermArray = [labelOrIndex]
+      }
+      cy.wrap(subject).click()
+      cy.wait(350)
+      cy.get('.q-popover .q-item-main').as('selectOptions')
+
+      searchTermArray.forEach((value: string | number) => {
+        if (typeof value === 'number') {
+          cy.get('@selectOptions').eq(value).click()
+        } else {
+          cy.get('@selectOptions').contains(value).click()
+        }
+      })
+    },
+  )
 }

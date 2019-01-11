@@ -8,7 +8,7 @@ module.exports = {
     '@vue/test-utils': '@vue/test-utils',
     vue: 'vue',
   },
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, './src/index.ts'),
   output: {
     path: path.resolve(__dirname, './dist/'),
     filename: 'index.js',
