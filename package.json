@@ -1,11 +1,12 @@
 {
   "name": "@laura-wert/vue-test-helpers",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "productName": "",
   "license": "MIT",
   "author": " ",
   "main": "dist/",
+  "typings": "lib/src/index.d.ts",
   "publishConfig": {
     "access": "public"
   },

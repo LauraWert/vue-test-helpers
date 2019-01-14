@@ -1,8 +1,8 @@
 import { mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
-import { IEWrapper } from 'src/types'
 import { VueConstructor } from 'vue'
 import { Vue } from 'vue/types/vue'
+import { IEWrapper } from './types'
 import ChaiExpect = Chai.ExpectStatic
 
 export function eMount<V extends Vue>(component: VueConstructor<V>, options?: MountOptions<V>): IEWrapper<V> {
