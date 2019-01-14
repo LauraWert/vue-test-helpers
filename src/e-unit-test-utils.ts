@@ -1,4 +1,5 @@
 import { mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
+import flushPromises from 'flush-promises'
 import { IEWrapper } from 'src/types'
 import { VueConstructor } from 'vue'
 import { Vue } from 'vue/types/vue'
@@ -116,6 +117,31 @@ export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V
         wrapper.validateInputs(keyAndGetter[key], expect, formValues[key])
       }
     }
+  }
+
+  /**
+   * Submit form
+   * @param {name} string form name
+   * @returns {Promise} empty promise
+   */
+  wrapper.submitForm = async (name: string): Promise<null> => {
+    // $nextTick because vee-validate can't read the password value otherwise
+    // (it uses the initial value)
+    await wrapper.vm.$nextTick()
+    wrapper.getInput(name).trigger('submit')
+
+    return await flushPromises()
+  }
+
+  /**
+   * Set value of quasar select input
+   * @param {name} string input name
+   * @param {value} string value to set in input
+   * @returns {Promise} empty promise
+   */
+  // tslint:disable-next-line:no-any
+  wrapper.setSelectValue = (name: string, value: any): void => {
+    wrapper.getInput(name).vm.$emit('input', value)
   }
 
   return wrapper

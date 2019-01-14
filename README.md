@@ -7,8 +7,8 @@ vue-test-helpers
 tslint jsrules can be set to true when the following PR is released
 https://github.com/palantir/tslint/pull/3641
 
-##Installation
-####Cypress
+## Installation
+#### Cypress
 If you want to use the extra cypress commands in your project, then you need to declare the following commands 
 on the Chainable interface in the cypress namespace:
 

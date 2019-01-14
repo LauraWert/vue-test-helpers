@@ -20,6 +20,11 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
   validateInputs(validatorCallbackName: string, expect: ExpectStatic, obj: { [_: string]: string }): void
 
   validateForm(expect: ExpectStatic, obj: { [_: string]: { [_: string]: string } }): void
+
+  submitForm(name: string): Promise<null>
+
+  // tslint:disable-next-line:no-any
+  setSelectValue(name: string, value: any): void
 }
 
 export interface IPluginOptions {
