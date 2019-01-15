@@ -67,16 +67,15 @@ export function extendCypress(Cypress: any, cy: any): void {
   Cypress.Commands.add(
     'selectOption',
     {prevSubject: 'element'},
-    (subject: HTMLElement, labelOrIndex: string | number) => {
-      let searchTermArray: Array<string | number> = []
+    (subject: HTMLElement, labelOrIndex: string | number | Array<string | number>) => {
       if (typeof labelOrIndex === 'string' || typeof labelOrIndex === 'number') {
-        searchTermArray = [labelOrIndex]
+        labelOrIndex = [labelOrIndex]
       }
       cy.wrap(subject).click()
       cy.wait(350)
       cy.get('.q-popover .q-item-main').as('selectOptions')
 
-      searchTermArray.forEach((value: string | number) => {
+      labelOrIndex.forEach((value: string | number) => {
         if (typeof value === 'number') {
           cy.get('@selectOptions').eq(value).click()
         } else {
