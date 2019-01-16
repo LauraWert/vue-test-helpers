@@ -1,5 +1,4 @@
 import { mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
-import flushPromises from 'flush-promises'
 import { VueConstructor } from 'vue'
 import { Vue } from 'vue/types/vue'
 import { IEWrapper } from './types'
@@ -124,13 +123,15 @@ export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V
    * @param {name} string form name
    * @returns {Promise} empty promise
    */
-  wrapper.submitForm = async (name: string): Promise<null> => {
+  wrapper.submitForm = async (name: string): Promise<object> => {
     // $nextTick because vee-validate can't read the password value otherwise
     // (it uses the initial value)
     await wrapper.vm.$nextTick()
     wrapper.find('[data-name="' + name + '"]').trigger('submit')
 
-    return flushPromises()
+    return new Promise((resolve, reject): void => {
+      setTimeout(() => resolve(), 25)
+    })
   }
 
   /**
