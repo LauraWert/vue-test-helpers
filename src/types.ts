@@ -33,7 +33,18 @@ export interface IPluginOptions {
   store?: object
 }
 
+export interface IQuasarConfig {
+  config?: object,
+  // tslint:disable-next-line:no-any
+  i18n?: any,
+  // tslint:disable-next-line:no-any
+  iconSet?: any,
+  directives?: object,
+  plugins?: object
+}
+
 export interface ICreateTestAppOptions extends IPluginOptions {
   // tslint:disable-next-line:no-any
   plugins?: any
+  quasarConfig?: IQuasarConfig
 }
