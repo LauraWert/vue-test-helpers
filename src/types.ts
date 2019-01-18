@@ -21,7 +21,7 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
 
   validateForm(expect: ExpectStatic, obj: { [_: string]: { [_: string]: string } }): void
 
-  submitForm(name: string): Promise<object>
+  submitForm(name: string): Promise<void>
 
   // tslint:disable-next-line:no-any
   setSelectValue(name: string, value: any): void
