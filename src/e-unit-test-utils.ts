@@ -83,7 +83,7 @@ export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V
 
   // tslint:disable-next-line:no-any
   wrapper.setSelectValue = (name: string, value: any): void => {
-    wrapper.find('[name="' + name + '"').vm.$emit('input', value)
+    wrapper.find('[name="' + name + '"]').vm.$emit('input', value)
   }
 
   return wrapper
