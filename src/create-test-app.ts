@@ -1,6 +1,6 @@
 import { config, createLocalVue } from '@vue/test-utils'
-import Quasar from 'quasar'
-import lang from 'quasar-framework/i18n/nl'
+import langNl from 'quasar/lang/nl'
+import Quasar from 'quasar/src/vue-plugin.js'
 import Vue, { VueConstructor } from 'vue'
 import ExtendedTransitionStub from './stubs/ExtendedTransitionStub.js'
 import { ICreateTestAppOptions, IQuasarConfig } from './types'
@@ -12,8 +12,8 @@ export function createTestApp(options: ICreateTestAppOptions = {}): VueConstruct
     config: {},
   } as IQuasarConfig
 
-  if (typeof quasarConfig.i18n === 'undefined') {
-    quasarConfig.i18n = lang
+  if (typeof quasarConfig.lang === 'undefined') {
+    quasarConfig.lang = langNl
   }
 
   Vue.use(Quasar, quasarConfig)

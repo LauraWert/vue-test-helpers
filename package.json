@@ -12,19 +12,19 @@
   },
   "scripts": {
     "build": "yarn lint && yarn clean && yarn build:ts && yarn build:main",
-    "build:ts": "tsc -p . --declaration --emitDeclarationOnly --allowJs false --noImplicitAny false && rm -rf ./lib/test",
+    "build:ts": "tsc -p . --declaration --emitDeclarationOnly --allowJs false --noImplicitAny false && rm -rf ./lib/tests",
     "build:main": "vue-cli-service build --target lib --name org/index src/index.ts && mv ./dist/org/index.umd.min.js ./dist/ && rm -rf ./dist/org && rm -rf ./dist/demo.html",
     "clean": "rimraf ./dist && rimraf ./lib",
     "release": "yarn git-clean-status &&  yarn build && yarn publish",
     "lint": "vue-cli-service lint --fix && laura-wert-cli tslint",
     "test:unit": "vue-cli-service test:unit --include tests/unit/setup.ts tests/unit/",
-    "test:unit-s": "vue-cli-service test:unit --include tests/unit/setup.js",
+    "test:unit-s": "vue-cli-service test:unit --include tests/unit/setup.ts",
     "test-ci": "yarn cover && cat ./coverage/lcov.info | yarn codacy-coverage",
     "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcovonly yarn test:unit"
   },
   "peerDependencies": {
     "@vue/test-utils": ">=1.0.0-beta.12",
-    "quasar-framework": ">=0.16.0",
+    "quasar": "^1.0.0-beta.1",
     "vue": ">=2.5.0"
   },
   "devDependencies": {
@@ -45,6 +45,7 @@
     "@vue/test-utils": ">=1.0.0-beta.12",
     "axios": "^0.18.0",
     "babel-plugin-istanbul": "^5.1.0",
+    "babel-plugin-transform-imports": "^1.5.1",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.2.0",
     "cross-env": "^5.2.0",
@@ -53,7 +54,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^7.3.0",
     "nyc": "^13.1.0",
-    "quasar-framework": ">=0.16.0",
+    "quasar": "^1.0.0-beta.1",
     "rimraf": "^2.6.2",
     "tslint-no-unused-expression-chai": "^0.1.4",
     "typescript": "~3.2.2",

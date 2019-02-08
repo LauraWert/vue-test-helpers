@@ -1,2 +1,2 @@
-declare module 'quasar'
-declare module 'quasar-framework/i18n/nl'
+declare module 'quasar/src/vue-plugin.js'
+declare module 'quasar/lang/nl'

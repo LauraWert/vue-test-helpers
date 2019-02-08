@@ -36,7 +36,7 @@ export interface IPluginOptions {
 export interface IQuasarConfig {
   config?: object,
   // tslint:disable-next-line:no-any
-  i18n?: any,
+  lang?: any,
   // tslint:disable-next-line:no-any
   iconSet?: any,
   directives?: object,
