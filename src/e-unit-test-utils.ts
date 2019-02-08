@@ -5,11 +5,11 @@ import { IEWrapper } from './types'
 import ChaiExpect = Chai.ExpectStatic
 
 export function eMount<V extends Vue>(component: VueConstructor<V>, options?: MountOptions<V>): IEWrapper<V> {
-  return extendWrapper(<IEWrapper<V>> mount(component, options))
+  return extendWrapper(mount(component, options) as IEWrapper<V>)
 }
 
 export function eShallow<V extends Vue>(component: VueConstructor<V>, options?: MountOptions<V>): IEWrapper<V> {
-  return extendWrapper(<IEWrapper<V>> shallowMount(component, options))
+  return extendWrapper(shallowMount(component, options) as IEWrapper<V>)
 }
 
 export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V> {
@@ -18,12 +18,12 @@ export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V
   }
 
   wrapper.getTextFromInput = (name: string): string => {
-    const input = <HTMLInputElement> wrapper.getInput(name).element
+    const input = wrapper.getInput(name).element as HTMLInputElement
     return input.value
   }
 
   wrapper.getIntFromInput = (name: string): number => {
-    const input = <HTMLInputElement> wrapper.getInput(name).element
+    const input = wrapper.getInput(name).element as HTMLInputElement
     return parseInt(input.value, 10)
   }
 

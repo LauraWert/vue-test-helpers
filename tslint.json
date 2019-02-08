@@ -1,12 +1,31 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended"
+    "tslint:recommended",
+    "tslint-no-unused-expression-chai"
   ],
   "linterOptions": {
     "exclude": [
       "node_modules/**"
     ]
+  },
+  "jsRules": {
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "semicolon": [
+      true,
+      "never"
+    ],
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
+    "no-console": {
+      "severity": "warning"
+    },
+    "object-literal-sort-keys": false
   },
   "rules": {
     "no-any": true,
@@ -36,30 +55,25 @@
       true,
       "ignore-same-line"
     ],
-    "no-angle-bracket-type-assertion": false,
+    "no-angle-bracket-type-assertion": true,
     "no-console": {
       "severity": "warning"
     },
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-type-operator",
+      "check-preblock"
+    ]
   },
-  "jsRules": {
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "semicolon": [
-      true,
-      "never"
-    ],
-    "curly": [
-      true,
-      "ignore-same-line"
-    ],
-    "no-angle-bracket-type-assertion": false,
-    "no-console": {
-      "severity": "warning"
-    },
-    "object-literal-sort-keys": false
-  },
-  "rulesDirectory": []
+  "rulesDirectory": [
+    "tslint-no-unused-expression-chai"
+  ]
 }

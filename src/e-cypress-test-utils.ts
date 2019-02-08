@@ -16,7 +16,8 @@ export function extendCypress(Cypress: any, cy: any): void {
    * @param {parts} set of strings which together form the element name
    * @returns (Cypress Chainable)
    */
-  Cypress.Commands.add('findByName', {prevSubject: 'optional'},
+  Cypress.Commands.add(
+    'findByName', { prevSubject: 'optional' },
     (subject: HTMLElement | null, ...parts: string[]) => {
       const cysubject = subject ? cy.wrap(subject) : cy
       const name = parts.join('-')
@@ -30,7 +31,8 @@ export function extendCypress(Cypress: any, cy: any): void {
    * @param {errorMessage} string Message which should be shown in .q-field-error
    * @returns (void)
    */
-  Cypress.Commands.add('shouldHaveValidationError', {prevSubject: 'element'},
+  Cypress.Commands.add(
+    'shouldHaveValidationError', { prevSubject: 'element' },
     (subject: HTMLElement, errorMessage: string) => {
       const cySubject = cy.wrap(subject)
       cySubject.find('.q-field-error').should('have.text', errorMessage)
@@ -43,7 +45,8 @@ export function extendCypress(Cypress: any, cy: any): void {
    * @param {index} int index of message in case there are multiple notifications on screen
    * @returns (void)
    */
-  Cypress.Commands.add('shouldShowNotification', {prevSubject: false},
+  Cypress.Commands.add(
+    'shouldShowNotification', { prevSubject: false },
     (errorMessage: string, index: number = 0) => {
       cy.get('.q-notification .q-alert-content').as('error').should('be.visible')
       cy.get('@error').eq(index).should('have.text', errorMessage)
@@ -66,11 +69,12 @@ export function extendCypress(Cypress: any, cy: any): void {
    */
   Cypress.Commands.add(
     'selectOption',
-    {prevSubject: 'element'},
+    { prevSubject: 'element' },
     (subject: HTMLElement, labelOrIndex: string | number | Array<string | number>) => {
       if (typeof labelOrIndex === 'string' || typeof labelOrIndex === 'number') {
         labelOrIndex = [labelOrIndex]
       }
+
       cy.wrap(subject).click()
       cy.wait(350)
       cy.get('.q-popover .q-item-main').as('selectOptions')

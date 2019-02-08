@@ -8,9 +8,9 @@ import { ICreateTestAppOptions, IQuasarConfig } from './types'
 export function createTestApp(options: ICreateTestAppOptions = {}): VueConstructor<Vue> {
   const router = options.router || null
   const store = options.store || null
-  const quasarConfig = options.quasarConfig || <IQuasarConfig> {
+  const quasarConfig = options.quasarConfig || {
     config: {},
-  }
+  } as IQuasarConfig
 
   if (typeof quasarConfig.i18n === 'undefined') {
     quasarConfig.i18n = lang
