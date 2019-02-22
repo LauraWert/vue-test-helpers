@@ -16,7 +16,9 @@
       "node",
       "mocha",
       "chai",
-      "jquery"
+      "jquery",
+      "sinon",
+      "sinon-chai"
     ],
     "paths": {
       "src/*": [

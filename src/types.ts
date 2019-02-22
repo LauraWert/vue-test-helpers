@@ -1,5 +1,5 @@
-import { Wrapper } from '@vue/test-utils'
-import { Vue } from 'vue/types/vue'
+import { VueTestUtilsConfigOptions, Wrapper } from '@vue/test-utils'
+import { Vue, VueConstructor } from 'vue/types/vue'
 import ExpectStatic = Chai.ExpectStatic
 
 export interface IEWrapper<V extends Vue> extends Wrapper<V> {
@@ -27,10 +27,9 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
   setSelectValue(name: string, value: any): void
 }
 
-export interface IPluginOptions {
-  app?: object
-  router?: object
-  store?: object
+export interface ISetupOptions {
+  Vue?: VueConstructor
+  testUtilsConfig?: VueTestUtilsConfigOptions
 }
 
 export interface IQuasarConfig {
@@ -43,8 +42,6 @@ export interface IQuasarConfig {
   plugins?: object
 }
 
-export interface ICreateTestAppOptions extends IPluginOptions {
-  // tslint:disable-next-line:no-any
-  plugins?: any
+export interface IAddQuasarOptions extends ISetupOptions {
   quasarConfig?: IQuasarConfig
 }

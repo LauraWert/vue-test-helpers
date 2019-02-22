@@ -1,4 +1,4 @@
-export * from './create-test-app'
+export * from './setup-vue'
 export * from './e-unit-test-utils'
 export * from './e-cypress-test-utils'
 export * from './router-link'
