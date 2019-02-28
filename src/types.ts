@@ -25,6 +25,8 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
 
   // tslint:disable-next-line:no-any
   setSelectValue(name: string, value: any): void
+
+  getByName(name: string): Wrapper<Vue>
 }
 
 export interface ISetupOptions {

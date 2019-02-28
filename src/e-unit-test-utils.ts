@@ -12,51 +12,52 @@ export function eShallow<V extends Vue>(component: VueConstructor<V>, options?: 
   return extendWrapper(shallowMount(component, options) as IEWrapper<V>)
 }
 
-export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V> {
-  wrapper.getInput = (name: string): Wrapper<Vue> => {
-    return wrapper.find(`input[name="${name}"], input[data-name="${name}"]`)
+export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> {
+  const eWrapper = wrapper as IEWrapper<V>
+  eWrapper.getInput = (name: string): Wrapper<Vue> => {
+    return eWrapper.find(`input[name="${name}"], input[data-name="${name}"]`)
   }
 
-  wrapper.getTextFromInput = (name: string): string => {
-    const input = wrapper.getInput(name).element as HTMLInputElement
+  eWrapper.getTextFromInput = (name: string): string => {
+    const input = eWrapper.getInput(name).element as HTMLInputElement
     return input.value
   }
 
-  wrapper.getIntFromInput = (name: string): number => {
-    const input = wrapper.getInput(name).element as HTMLInputElement
+  eWrapper.getIntFromInput = (name: string): number => {
+    const input = eWrapper.getInput(name).element as HTMLInputElement
     return parseInt(input.value, 10)
   }
 
-  wrapper.setInputValue = (name: string, value): void => {
-    const input = wrapper.getInput(name)
+  eWrapper.setInputValue = (name: string, value): void => {
+    const input = eWrapper.getInput(name)
     // @ts-ignore
     input.element.value = value
     input.trigger('input')
   }
 
-  wrapper.getQChipLength = (name: string): number => {
-    return wrapper.findAll('div[name="' + name + '"] .q-chip-main').length
+  eWrapper.getQChipLength = (name: string): number => {
+    return eWrapper.findAll('div[name="' + name + '"] .q-chip-main').length
   }
 
-  wrapper.getOptionsValue = (name: string): string => {
-    return wrapper.find('div[name="' + name + '"] div.q-input-target').element.innerHTML.trim()
+  eWrapper.getOptionsValue = (name: string): string => {
+    return eWrapper.find('div[name="' + name + '"] div.q-input-target').element.innerHTML.trim()
   }
 
-  wrapper.getMultiOptionsValue = (name: string): string[] => {
-    return wrapper.find('div[name="' + name + '"] div.q-input-target').element.innerHTML
+  eWrapper.getMultiOptionsValue = (name: string): string[] => {
+    return eWrapper.find('div[name="' + name + '"] div.q-input-target').element.innerHTML
       .split(',')
       .map((v: string) => v.trim())
       .filter((v: string) => v !== '')
   }
 
-  wrapper.validateInputs = (validatorCallbackName: string, expect: ChaiExpect, obj: { [_: string]: string }): void => {
+  eWrapper.validateInputs = (validatorCallbackName: string, expect: ChaiExpect, obj: { [_: string]: string }): void => {
     for (const i of Object.keys(obj)) {
       // @ts-ignore
       expect(this[validatorCallbackName](i)).to.eql(obj[i])
     }
   }
 
-  wrapper.validateForm = (expect: ChaiExpect, formValues: { [_: string]: { [_: string]: string } }): void => {
+  eWrapper.validateForm = (expect: ChaiExpect, formValues: { [_: string]: { [_: string]: string } }): void => {
     const keyAndGetter: { [_: string]: string } = {
       qChipLengths: 'getQChipLength',
       options: 'getOptionsValue',
@@ -66,27 +67,31 @@ export function extendWrapper<V extends Vue>(wrapper: IEWrapper<V>): IEWrapper<V
     }
     for (const key of Object.keys(keyAndGetter)) {
       if (key in formValues) {
-        wrapper.validateInputs(keyAndGetter[key], expect, formValues[key])
+        eWrapper.validateInputs(keyAndGetter[key], expect, formValues[key])
       }
     }
   }
 
-  wrapper.submitForm = async (name: string): Promise<void> => {
+  eWrapper.submitForm = async (name: string): Promise<void> => {
     // $nextTick because vee-validate can't read the password value otherwise
     // (it uses the initial value)
-    await wrapper.vm.$nextTick()
-    wrapper.find('[data-name="' + name + '"]').trigger('submit')
+    await eWrapper.vm.$nextTick()
+    eWrapper.find('[data-name="' + name + '"]').trigger('submit')
 
     // We do a flushPromisesTimeout so the validator is ready after submission
     return flushPromisesTimeout()
   }
 
   // tslint:disable-next-line:no-any
-  wrapper.setSelectValue = (name: string, value: any): void => {
-    wrapper.find('[name="' + name + '"]').vm.$emit('input', value)
+  eWrapper.setSelectValue = (name: string, value: any): void => {
+    eWrapper.find('[name="' + name + '"]').vm.$emit('input', value)
   }
 
-  return wrapper
+  eWrapper.getByName = (name: string): Wrapper<Vue> => {
+    return eWrapper.find(`[name="${name}"], [data-name="${name}"]`)
+  }
+
+  return eWrapper
 }
 
 // flush promise with timeout because the setImmediate never resolves
