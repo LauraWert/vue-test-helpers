@@ -17,6 +17,8 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
 
   getMultiOptionsValue(name: string): string[]
 
+  toggleCheckbox(name: string): Wrapper<Vue>
+
   validateInputs(validatorCallbackName: string, expect: ExpectStatic, obj: { [_: string]: string }): void
 
   validateForm(expect: ExpectStatic, obj: { [_: string]: { [_: string]: string } }): void

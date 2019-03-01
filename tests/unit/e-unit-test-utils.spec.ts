@@ -13,4 +13,11 @@ describe('e-unit-test-utils', (): void => {
     wrapper.setInputValue('my-input', 'foo bar')
     expect(wrapper.getByName('my-input').emitted('input')[0]).to.eql(['foo bar'])
   })
+
+  it('can toggle a checkbox', () => {
+    const wrapper = eMount(EWrapperHelper)
+
+    const checkbox = wrapper.toggleCheckbox('my-checkbox')
+    expect(checkbox.emitted('input')[0]).to.eql([true])
+  })
 })

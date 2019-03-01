@@ -8,6 +8,8 @@ module.exports = {
   configureWebpack: config => {
     if (config.mode === 'production') {
       config.externals['quasar/src/vue-plugin.js'] = 'quasar/src/vue-plugin.js'
+      config.externals['quasar/src/components/input/index.js'] = 'quasar/src/components/input/index.js'
+      config.externals['quasar/src/components/checkbox/index.js'] = 'quasar/src/components/checkbox/index.js'
       config.externals['quasar/lang/nl'] = 'quasar/lang/nl'
       config.externals['@vue/test-utils'] = '@vue/test-utils'
       config.externals['vue'] = 'vue'

@@ -50,6 +50,12 @@ export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> 
       .filter((v: string) => v !== '')
   }
 
+  eWrapper.toggleCheckbox = (name: string = ''): Wrapper<Vue> => {
+    const qCheckBox = eWrapper.getByName(name)
+    qCheckBox.find('.q-checkbox__native').trigger('click')
+    return qCheckBox
+  }
+
   eWrapper.validateInputs = (validatorCallbackName: string, expect: ChaiExpect, obj: { [_: string]: string }): void => {
     for (const i of Object.keys(obj)) {
       // @ts-ignore
