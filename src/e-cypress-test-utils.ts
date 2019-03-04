@@ -62,7 +62,7 @@ export function extendCypress(Cypress: any, cy: any): void {
   })
 
   /**
-   * Clicks on an element of popover
+   * Clicks on an element of q-local-menu
    * @param {subject} HTML element
    * @param {labelOrIndex} string | number name or index of options to be clicked
    * @returns void
@@ -77,7 +77,7 @@ export function extendCypress(Cypress: any, cy: any): void {
 
       cy.wrap(subject).click()
       cy.wait(350)
-      cy.get('.q-popover .q-item-main').as('selectOptions')
+      cy.get('.q-local-menu .q-item').as('selectOptions')
 
       labelOrIndex.forEach((value: string | number) => {
         if (typeof value === 'number') {
