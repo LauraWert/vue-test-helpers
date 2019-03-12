@@ -25,11 +25,11 @@ export function addQuasarToVue(options: IAddQuasarOptions = {}): void {
 
 export function mockVueI18n(options: ISetupOptions = {}): void {
   addOptionDefaults(options)
-  // tslint:disable-next-line:no-any
-  options.testUtilsConfig!.mocks!.$t = (key: string, params: any): string =>
+  options.testUtilsConfig!.mocks!.$t = (key: string, params: unknown): string =>
     key + (params ? '_' + JSON.stringify(params) : '')
-  // tslint:disable-next-line:no-any
-  options.testUtilsConfig!.mocks!.$tc = (key: string, params: any): string =>
+  options.testUtilsConfig!.mocks!.$tc = (key: string, params: unknown): string =>
+    key + (params ? '_' + JSON.stringify(params) : '')
+  options.testUtilsConfig!.mocks!.$n = (key: string, params: unknown): string =>
     key + (params ? '_' + JSON.stringify(params) : '')
 
   options.Vue!.directive('t', {

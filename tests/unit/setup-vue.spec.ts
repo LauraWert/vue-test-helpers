@@ -44,6 +44,7 @@ describe('setup-vue', () => {
     const options = fakeMockVueI18n()
     expect(options.testUtilsConfig.mocks!.$t).not.undefined
     expect(options.testUtilsConfig.mocks!.$tc).not.undefined
+    expect(options.testUtilsConfig.mocks!.$n).not.undefined
 
     expect(options.Vue.directive).to.have.been.calledOnce
     expect(options.Vue.directive.firstCall.args[0]).to.equal('t')
@@ -54,9 +55,12 @@ describe('setup-vue', () => {
 
     const $t = options.testUtilsConfig.mocks!.$t
     const $tc = options.testUtilsConfig.mocks!.$tc
+    const $n = options.testUtilsConfig.mocks!.$n
     expect($t('params1', ['param2']))
       .to.equal('params1_["param2"]')
     expect($tc('params1', { key: 'param2' }))
+      .to.equal('params1_{"key":"param2"}')
+    expect($n('params1', { key: 'param2' }))
       .to.equal('params1_{"key":"param2"}')
   })
 
