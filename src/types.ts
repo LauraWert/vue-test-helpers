@@ -9,7 +9,9 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
 
   getIntFromInput(name: string): number
 
-  setInputValue(arg0: string, arg1: string): void
+  getValidationError(name: string): string
+
+  setInputValue(name: string, value: string): void
 
   getQChipLength(name: string): number
 

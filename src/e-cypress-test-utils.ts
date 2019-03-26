@@ -35,7 +35,9 @@ export function extendCypress(Cypress: any, cy: any): void {
     'shouldHaveValidationError', { prevSubject: 'element' },
     (subject: HTMLElement, errorMessage: string) => {
       const cySubject = cy.wrap(subject)
-      cySubject.find('.q-field-error').should('have.text', errorMessage)
+
+      cySubject.should('have.class', 'q-field--error')
+        .find('.q-field--error .q-field__bottom .q-field__messages').should('have.text', errorMessage)
     },
   )
 

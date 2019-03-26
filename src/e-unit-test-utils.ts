@@ -15,7 +15,7 @@ export function eShallow<V extends Vue>(component: VueConstructor<V>, options?: 
 export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> {
   const eWrapper = wrapper as IEWrapper<V>
   eWrapper.getInput = (name: string): Wrapper<Vue> => {
-    return eWrapper.find(`input[name="${name}"], input[data-name="${name}"]`)
+    return eWrapper.find(`[name="${name}"] input, [data-name="${name}"] input`)
   }
 
   eWrapper.getTextFromInput = (name: string): string => {
@@ -26,6 +26,10 @@ export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> 
   eWrapper.getIntFromInput = (name: string): number => {
     const input = eWrapper.getInput(name).element as HTMLInputElement
     return parseInt(input.value, 10)
+  }
+
+  eWrapper.getValidationError = (name: string): string => {
+    return eWrapper.find(`[name="${name}"].q-field--error .q-field__bottom .q-field__messages`).text()
   }
 
   eWrapper.setInputValue = (name: string, value): void => {
