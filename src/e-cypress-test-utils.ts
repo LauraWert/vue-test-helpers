@@ -37,7 +37,7 @@ export function extendCypress(Cypress: any, cy: any): void {
       const cySubject = cy.wrap(subject)
 
       cySubject.should('have.class', 'q-field--error')
-        .find('.q-field--error .q-field__bottom .q-field__messages').should('have.text', errorMessage)
+        .find('.q-field__bottom .q-field__messages').should('have.text', errorMessage)
     },
   )
 
@@ -77,9 +77,9 @@ export function extendCypress(Cypress: any, cy: any): void {
         labelOrIndex = [labelOrIndex]
       }
 
-      cy.wrap(subject).click()
+      cy.wrap(subject).eq(0).click()
       cy.wait(350)
-      cy.get('.q-local-menu .q-item').as('selectOptions')
+      cy.get('.q-menu .q-item').as('selectOptions')
 
       labelOrIndex.forEach((value: string | number) => {
         if (typeof value === 'number') {
