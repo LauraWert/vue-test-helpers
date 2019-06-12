@@ -11,7 +11,7 @@ describe('e-unit-test-utils', (): void => {
   it('can set an input value', () => {
     const wrapper = eMount(EWrapperHelper)
     wrapper.setInputValue('my-input', 'foo bar')
-    expect(wrapper.getByName('my-input').emitted('input')[0]).to.eql(['foo bar'])
+    expect(wrapper.getQInput('my-input').emitted('input')[0]).to.eql(['foo bar'])
   })
 
   it('can toggle a checkbox', () => {
@@ -19,5 +19,12 @@ describe('e-unit-test-utils', (): void => {
 
     const checkbox = wrapper.toggleCheckbox('my-checkbox')
     expect(checkbox.emitted('input')[0]).to.eql([true])
+  })
+
+  it('can get a q-select', () => {
+    const wrapper = eMount(EWrapperHelper)
+
+    const select = wrapper.getQSelect('my-select')
+    expect(select).not.to.be.null
   })
 })

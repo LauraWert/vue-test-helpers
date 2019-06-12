@@ -25,6 +25,30 @@ export function extendCypress(Cypress: any, cy: any): void {
     },
   )
 
+  Cypress.Commands.add('getInput', (...parts: string[]) => {
+    return cy.getByName(...parts)
+  })
+
+  Cypress.Commands.add(
+    'findInput', { prevSubject: 'optional' },
+    (subject: HTMLElement | null, ...parts: string[]) => {
+      const cysubject = subject ? cy.wrap(subject) : cy
+      return cysubject.findByName(...parts)
+    },
+  )
+
+  Cypress.Commands.add('getField', (...parts: string[]) => {
+    return cy.getByName(...parts).parents('.q-field')
+  })
+
+  Cypress.Commands.add(
+    'findField', { prevSubject: 'optional' },
+    (subject: HTMLElement | null, ...parts: string[]) => {
+      const cysubject = subject ? cy.wrap(subject) : cy
+      return cysubject.findByName(...parts).parents('.q-field')
+    },
+  )
+
   /**
    * Searches and validates previous Cypress chainable for quasar .q-field-error with correct error response
    * @param {subject} HTML element
@@ -36,8 +60,17 @@ export function extendCypress(Cypress: any, cy: any): void {
     (subject: HTMLElement, errorMessage: string) => {
       const cySubject = cy.wrap(subject)
 
-      cySubject.should('have.class', 'q-field--error')
+      cySubject.parents('.q-field--error')
         .find('.q-field__bottom .q-field__messages').should('have.text', errorMessage)
+    },
+  )
+
+  Cypress.Commands.add(
+    'shouldNotHaveValidationError', { prevSubject: 'element' },
+    (subject: HTMLElement, errorMessage: string) => {
+      const cySubject = cy.wrap(subject)
+
+      cySubject.parents('.q-field--error').should('not.exist')
     },
   )
 

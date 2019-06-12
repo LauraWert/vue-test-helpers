@@ -6,4 +6,8 @@ declare global {
     app: ComponentOptions<Vue>
     Cypress: object
   }
+
+  interface HTMLElement {
+    __vue__: Vue
+  }
 }

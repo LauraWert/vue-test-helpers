@@ -5,6 +5,8 @@ import ExpectStatic = Chai.ExpectStatic
 export interface IEWrapper<V extends Vue> extends Wrapper<V> {
   getInput(name: string): Wrapper<Vue>
 
+  getQInput(name: string): Wrapper<Vue>
+
   getTextFromInput(name: string): string
 
   getIntFromInput(name: string): number
@@ -26,6 +28,8 @@ export interface IEWrapper<V extends Vue> extends Wrapper<V> {
   validateForm(expect: ExpectStatic, obj: { [_: string]: { [_: string]: string } }): void
 
   submitForm(name: string): Promise<void>
+
+  getQSelect(name: string): Wrapper<Vue>
 
   // tslint:disable-next-line:no-any
   setSelectValue(name: string, value: any): void

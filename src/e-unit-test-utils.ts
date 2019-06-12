@@ -1,4 +1,4 @@
-import { mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
+import { createWrapper, mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
 import { VueConstructor } from 'vue'
 import { Vue } from 'vue/types/vue'
 import { IEWrapper } from './types'
@@ -15,7 +15,17 @@ export function eShallow<V extends Vue>(component: VueConstructor<V>, options?: 
 export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> {
   const eWrapper = wrapper as IEWrapper<V>
   eWrapper.getInput = (name: string): Wrapper<Vue> => {
-    return eWrapper.find(`[name="${name}"] input, [data-name="${name}"] input`)
+    return eWrapper.getByName(name)
+  }
+
+  eWrapper.getQInput = (name: string): Wrapper<Vue> => {
+    const el = eWrapper.getByName(name).element
+      .parentElement!.parentElement!.parentElement!.parentElement as HTMLElement
+    if (!el || !el.classList.contains('q-input')) {
+      throw new Error('q-input not found')
+    }
+
+    return createWrapper(el.__vue__)
   }
 
   eWrapper.getTextFromInput = (name: string): string => {
@@ -29,13 +39,19 @@ export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> 
   }
 
   eWrapper.getValidationError = (name: string): string => {
-    return eWrapper.find(`[name="${name}"].q-field--error .q-field__bottom .q-field__messages`).text()
+    let childEl: HTMLElement = eWrapper.getByName(name).element as HTMLElement
+
+    while (childEl.parentElement && !childEl.parentElement.classList.contains('q-field--error')) {
+      childEl = childEl.parentElement
+    }
+
+    return createWrapper(childEl.parentElement!.__vue__).find('.q-field__bottom .q-field__messages').text()
   }
 
   eWrapper.setInputValue = (name: string, value): void => {
-    const input = eWrapper.getInput(name)
-    // @ts-ignore
-    input.element.value = value
+    const input: Wrapper<Vue> = eWrapper.getInput(name)
+    const el = input.element as HTMLInputElement
+    el.value = value
     input.trigger('input')
   }
 
@@ -92,9 +108,19 @@ export function extendWrapper<V extends Vue>(wrapper: Wrapper<V>): IEWrapper<V> 
     return flushPromisesTimeout()
   }
 
+  eWrapper.getQSelect = (name: string): Wrapper<Vue> => {
+    const el = eWrapper.getByName(name).element
+      .parentElement!.parentElement!.parentElement!.parentElement as HTMLElement
+    if (!el || !el.classList.contains('q-select')) {
+      throw new Error('q-select not found')
+    }
+
+    return createWrapper(el.__vue__)
+  }
+
   // tslint:disable-next-line:no-any
   eWrapper.setSelectValue = (name: string, value: any): void => {
-    eWrapper.find('[name="' + name + '"]').vm.$emit('input', value)
+    eWrapper.getQSelect(name).vm.$emit('input', value)
   }
 
   eWrapper.getByName = (name: string): Wrapper<Vue> => {
