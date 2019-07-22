@@ -7,8 +7,10 @@ export const QDialogStub = {
     },
   },
   render: function(h) {
-    if (!this.value) return null
-
-    return h('div', this.$slots.default)
+    return h('div', {
+      style: {
+        display: (this.value ? 'block' : 'none'),
+      },
+    }, this.$slots.default)
   },
 }
