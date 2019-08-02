@@ -32,7 +32,6 @@
     "@laura-wert/git-clean-status": "^1.0.0",
     "@laura-wert/vue-helpers": "^1.0.13",
     "@types/chai": "^4.1.7",
-    "@types/jquery": "^3.3.30",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.12.30",
     "@types/sinon": "^7.0.13",

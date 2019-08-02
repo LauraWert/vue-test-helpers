@@ -4,7 +4,6 @@
     "module": "esnext",
     "strict": true,
     "importHelpers": true,
-    "allowJs": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
@@ -17,7 +16,6 @@
       "node",
       "mocha",
       "chai",
-      "jquery",
       "sinon",
       "sinon-chai"
     ],
@@ -27,14 +25,13 @@
       ]
     },
     "lib": [
-      "es2015",
+      "esnext",
       "dom",
       "dom.iterable",
       "scripthost"
     ]
   },
   "include": [
-    "src/**/*.js",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

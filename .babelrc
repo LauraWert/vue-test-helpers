@@ -1,6 +1,5 @@
 {
   "presets": [
     "@vue/app"
-  ],
-  "plugins": ["istanbul"]
+  ]
 }
