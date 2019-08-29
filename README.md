@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/LauraWert/vue-test-helpers.svg?branch=v2)](https://travis-ci.org/LauraWert/vue-helpers)
+[![Build Status](https://travis-ci.org/LauraWert/vue-test-helpers.svg?branch=v2)](https://travis-ci.org/LauraWert/vue-test-helpers)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b7436afec00b4d6a925a3c2bc4859a08)](https://www.codacy.com/app/LauraWert/vue-test-helpers?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LauraWert/vue-test-helpers&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b7436afec00b4d6a925a3c2bc4859a08)](https://www.codacy.com/app/LauraWert/vue-test-helpers?utm_source=github.com&utm_medium=referral&utm_content=LauraWert/vue-test-helpers&utm_campaign=Badge_Coverage)
 
