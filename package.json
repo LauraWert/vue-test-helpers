@@ -19,8 +19,8 @@
     "lint": "vue-cli-service lint --fix && laura-wert-cli tslint",
     "test:unit": "vue-cli-service test:unit --include tests/unit/setup.ts tests/unit/",
     "test:unit-s": "vue-cli-service test:unit --include tests/unit/setup.ts",
-    "test-ci": "yarn cover && cat ./coverage/lcov.info | yarn codacy-coverage",
-    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcovonly yarn test:unit"
+    "test-ci": "npm run cover && cat ./coverage/lcov.info | codacy-coverage ",
+    "cover": "nyc npm run test:unit"
   },
   "peerDependencies": {
     "@vue/test-utils": ">=1.0.0-beta.12",
@@ -46,7 +46,7 @@
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "axios": "^0.19.0",
-    "babel-plugin-istanbul": "^5.1.4",
+    "babel-plugin-istanbul": "^5.2.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.4.0",
@@ -91,27 +91,6 @@
       "laura-wert-cli tslint",
       "git add"
     ]
-  },
-  "nyc": {
-    "check-coverage": true,
-    "per-file": true,
-    "lines": 0,
-    "statements": 0,
-    "functions": 0,
-    "branches": 0,
-    "include": [
-      "src/**/*.{js,ts,vue}"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "extension": [
-      ".js",
-      ".ts",
-      ".vue"
-    ],
-    "cache": true,
-    "all": true
   },
   "dependencies": {}
 }
