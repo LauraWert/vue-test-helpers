@@ -1,8 +1,9 @@
 import { createLocalVue } from '@vue/test-utils'
 import { expect } from 'chai'
+import flushPromises from 'flush-promises'
 import { QSelect } from 'quasar'
 import { Vue } from 'vue-property-decorator'
-import { eMount, IEWrapper } from '../../src/e-unit-test-utils'
+import { eMount, IEWrapper } from '../../src'
 import EWrapperHelper from '../helpers/EWrapperHelper.vue'
 
 const localVue = createLocalVue()
@@ -17,14 +18,9 @@ describe('e-unit-test-utils', (): void => {
   })
 
   it('returns all autofill menu options from a qselect components', async () => {
-    const testData = [{
-      label: 'Neo',
-      value: 'Neo',
-    },
-    {
-      label: 'Morph',
-      value: 'Morph',
-    },
+    const testData = [
+      { label: 'Neo', value: 'Neo' },
+      { label: 'Morph', value: 'Morph' },
     ]
 
     document.body.innerHTML = ''
@@ -77,10 +73,10 @@ describe('e-unit-test-utils', (): void => {
   it('can get a validation error', async () => {
     wrapper.setInputValue('my-input', '')
     await wrapper.vm.$nextTick()
+    await flushPromises()
+    await wrapper.vm.$forceUpdate()
 
-    await wrapper.vm.$validator.validateAll()
-
-    expect(wrapper.getValidationError('my-input')).to.equal('The my-input value is not valid')
+    expect(wrapper.getValidationError('my-input')).to.equal('my-input is verplicht')
   })
 
   it('can get chip values from q-select', async (): Promise<void> => {

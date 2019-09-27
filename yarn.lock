@@ -716,10 +716,17 @@
   resolved "https://registry.yarnpkg.com/@laura-wert/git-clean-status/-/git-clean-status-1.0.0.tgz#faadfd2fb13da2b46ff6e90c3b631e9bea03b088"
   integrity sha1-+q39L7E9orRv9ukMO2Mem+oDsIg=
 
-"@laura-wert/vue-helpers@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@laura-wert/vue-helpers/-/vue-helpers-2.1.1.tgz#d31f4bdd764e4c8ee8cbe7c4a2ab6dba82a02bb0"
-  integrity sha512-WwiO/DHglgI4IKHGamjylz5OZbrCg/36rOwlZMu2TUcv7xOnuZDAVxXuCeISDSgnQPtKaS0t1rJf06jz7N8ozw==
+"@laura-wert/vee-form-handler@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@laura-wert/vee-form-handler/-/vee-form-handler-6.0.0.tgz#92d5f4e6f16d595d237cd9f4b6b1e4e10e3c7232"
+  integrity sha512-4StVpHYZpiqVOu5faL1/sGYHWhBoLWVyBm/VTU3E8hLTYa2q0+Sfh0dp7dDvb7+q9wxcxpgDfooan7VmwFOZxg==
+  dependencies:
+    sanitizer "^0.1.3"
+
+"@laura-wert/vue-helpers@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@laura-wert/vue-helpers/-/vue-helpers-3.0.0.tgz#2f969c54200673d1a1e741f54fb4c343f6dbb1cf"
+  integrity sha512-LgGXouo2V+1Snk7bXIBnmJHGFQvg7QLouOBW4wH4DJJfoSmnaKT43mGsppHNtgNWCwzHhYnUlndjSYc5GgfJGw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -4224,6 +4231,11 @@ flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
   integrity sha512-a1hQMktqW9Nmqr5aktAux3JMNqaucxGcjtjWnZLHX7yyPCmlSV3M54nGYbqT8K+0GhF3NBgmJCc3ma+WOgX8Jg==
+
+flush-promises@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/flush-promises/-/flush-promises-1.0.2.tgz#4948fd58f15281fed79cbafc86293d5bb09b2ced"
+  integrity sha512-G0sYfLQERwKz4+4iOZYQEZVpOt9zQrlItIxQAAYAWpfby3gbHrx0osCHz5RLl/XoXevXk0xoN4hDFky/VV9TrA==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -8298,6 +8310,11 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sanitizer@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/sanitizer/-/sanitizer-0.1.3.tgz#d4f0af7475d9a7baf2a9e5a611718baa178a39e1"
+  integrity sha1-1PCvdHXZp7ryqeWmEXGLqheKOeE=
+
 sax@>=0.6.0, sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -9516,10 +9533,10 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vee-validate@^2.2.14:
-  version "2.2.15"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-2.2.15.tgz#dc6c925d21e57288d3308fe5a39a0941036c575a"
-  integrity sha512-4TOsI8XwVkKVLkg8Nhmy+jyoJrR6XcTRDyxBarzcCvYzU61zamipS1WsB6FlDze8eJQpgglS4NXAS6o4NDPs1g==
+vee-validate@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-3.0.8.tgz#9aae7409925250eaef8a05b30f629c206009c27d"
+  integrity sha512-17PgYauciJrynQADWbS+bZw3FqPZkt0Ozm0LrJNf4eppU6GlgYgTbiyHZmbeX1U73nxfZ4rNdJqaxdGuRZf2PQ==
 
 vendors@^1.0.0:
   version "1.0.3"
