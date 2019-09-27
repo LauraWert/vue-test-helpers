@@ -140,6 +140,10 @@ class EWrapper<V extends VueType> {
       childEl = childEl.parentElement
     }
 
+    if (!childEl.parentElement) {
+      throw new Error('can\'t find validation error element with .q-field--error')
+    }
+
     return createWrapper(childEl.parentElement!.__vue__).find('.q-field__bottom .q-field__messages').text()
   }
 
