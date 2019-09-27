@@ -1,5 +1,5 @@
 const path = require('path')
-const { setBuildExternals } = require('./build-helpers')
+const { setBuildExternals } = require('@laura-wert/vue-helpers/build-helpers')
 
 module.exports = {
   css: {

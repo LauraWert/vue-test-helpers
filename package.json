@@ -73,8 +73,7 @@
   },
   "files": [
     "package.json",
-    "dist/",
-    "types/"
+    "dist/"
   ],
   "browserslist": [
     "> 1%",
