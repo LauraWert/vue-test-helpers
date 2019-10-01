@@ -32,5 +32,8 @@ module.exports = {
     }
 
     setBuildExternals(config)
+    if (config.mode === 'production') {
+      config.externals.sinon = 'sinon'
+    }
   },
 }
