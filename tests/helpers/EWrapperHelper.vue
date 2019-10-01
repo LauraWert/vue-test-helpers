@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <validation-observer ref="validationObserver">
     <q-checkbox v-model="checked" data-name="my-checkbox" />
     <uw-input v-model="value" rules="required" name="my-input" />
     <q-select v-model="selectValue" :options="options" name="my-select" />
@@ -19,17 +19,18 @@
     <div data-name="my-data-name-element">
       data-name content
     </div>
-  </div>
+  </validation-observer>
 </template>
 
 <script lang="ts">
 import { UwInput } from '@laura-wert/vee-form-handler'
 import { QCheckbox } from 'quasar/src/components/checkbox'
 import { QSelect } from 'quasar/src/components/select'
+import { ValidationObserver } from 'vee-validate'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
-  components: { QCheckbox, UwInput, QSelect },
+  components: { QCheckbox, UwInput, QSelect, ValidationObserver },
 })
 export default class EWrapperHelper extends Vue {
   public value: string = 'init'

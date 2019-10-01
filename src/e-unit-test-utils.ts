@@ -1,5 +1,6 @@
 import { createWrapper, mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
 import { QSelect } from 'quasar/dist/types/index'
+import { ValidationContext } from 'vee-validate/dist/types/components/common'
 import Vue, { VueConstructor } from 'vue'
 import { Vue as VueType } from 'vue/types/vue'
 import ChaiExpect = Chai.ExpectStatic
@@ -131,6 +132,15 @@ class EWrapper<V extends VueType> {
   public getIntFromInput(name: string): number {
     const input = this.getInput(name).element as HTMLInputElement
     return parseInt(input.value, 10)
+  }
+
+  public getValidationCtx(): ValidationContext {
+    if (!this.wrapper.vm.$refs.validationObserver) {
+      throw new Error('The ref validationObserver is not set.')
+    }
+
+    // @ts-ignore
+    return this.wrapper.vm.$refs.validationObserver.ctx
   }
 
   public getValidationError(name: string): string {

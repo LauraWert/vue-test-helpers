@@ -70,6 +70,24 @@ describe('e-unit-test-utils', (): void => {
     expect(wrapper.getIntFromInput('my-input')).to.equal(100)
   })
 
+  it('can get the validation context', async () => {
+    expect(wrapper.getValidationCtx()).to.contain.keys([
+      'changed',
+      'dirty',
+      'errors',
+      'invalid',
+      'passes',
+      'pending',
+      'pristine',
+      'reset',
+      'touched',
+      'untouched',
+      'valid',
+      'validate',
+      'validated',
+    ])
+  })
+
   it('can get a validation error', async () => {
     wrapper.setInputValue('my-input', '')
     await wrapper.vm.$nextTick()
