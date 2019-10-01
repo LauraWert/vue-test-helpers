@@ -68,3 +68,17 @@ declare namespace Cypress {
   }
 }
 ```
+# DialogPluginStub example
+```typescript
+import { DialogPluginStub, eMount } from '@laura-wert/vue-test-helpers'
+
+const dialogStub = new DialogPluginStub()
+const wrapper = ...
+wrapper.vm.$q.dialog = dialogStub.stub()
+
+expect(wrapper.vm.$q.dialog).to.be.calledWith(...)
+
+dialogStub.triggerOk()
+
+expect(wrapper.emitted('okClicked')).to.eql(...)
+```
