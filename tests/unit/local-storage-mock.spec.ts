@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { mockLocalStorage } from '../../src/local-storage-mock'
 
 describe('local-storage-mock', () => {

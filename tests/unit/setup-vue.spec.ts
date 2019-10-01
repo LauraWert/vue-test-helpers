@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import sinon, { SinonSpy } from 'sinon'
 import { addQuasarToVue, mockVueI18n } from '../../src/setup-vue'
 
