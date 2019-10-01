@@ -1,5 +1,4 @@
 import { createLocalVue } from '@vue/test-utils'
-import { expect } from 'chai'
 import flushPromises from 'flush-promises'
 import { QSelect } from 'quasar'
 import { Vue } from 'vue-property-decorator'
