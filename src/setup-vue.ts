@@ -32,6 +32,8 @@ export function mockVueI18n(options: ISetupOptions = {}): void {
   options.testUtilsConfig!.mocks!.$n = (key: string, params: unknown): string =>
     key + (params ? '_' + JSON.stringify(params) : '')
 
+  options.testUtilsConfig!.stubs!['i18n-n'] = true
+
   options.Vue!.directive('t', {
     bind: (el: HTMLElement, binding: DirectiveBinding, vnode: VNode): void => {
       el.textContent = JSON.stringify(binding.value)

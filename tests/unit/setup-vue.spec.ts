@@ -7,6 +7,8 @@ export interface IFakeMockI18nOptions {
   testUtilsConfig: {
     // tslint:disable-next-line:no-any
     mocks: Record<string, any>,
+    // tslint:disable-next-line:no-any
+    stubs: Record<string, any>,
   }
 }
 
@@ -15,6 +17,7 @@ describe('setup-vue', () => {
     const options: IFakeMockI18nOptions = {
       testUtilsConfig: {
         mocks: {},
+        stubs: {},
       },
       Vue: { directive: sinon.fake() },
     }
@@ -42,9 +45,10 @@ describe('setup-vue', () => {
 
   it('mocks vue i18n functions', () => {
     const options = fakeMockVueI18n()
-    expect(options.testUtilsConfig.mocks!.$t).not.undefined
-    expect(options.testUtilsConfig.mocks!.$tc).not.undefined
-    expect(options.testUtilsConfig.mocks!.$n).not.undefined
+    expect(options.testUtilsConfig.mocks.$t).not.undefined
+    expect(options.testUtilsConfig.mocks.$tc).not.undefined
+    expect(options.testUtilsConfig.mocks.$n).not.undefined
+    expect(options.testUtilsConfig.stubs['i18n-n']).not.undefined
 
     expect(options.Vue.directive).to.have.been.calledOnce
     expect(options.Vue.directive.firstCall.args[0]).to.equal('t')
