@@ -1,14 +1,35 @@
-import { createWrapper, mount, MountOptions, shallowMount, Wrapper } from '@vue/test-utils'
+import {
+  createWrapper,
+  mount,
+  MountOptions,
+  shallowMount,
+  ShallowMountOptions,
+  ThisTypedMountOptions,
+  ThisTypedShallowMountOptions,
+  VueClass,
+  Wrapper,
+} from '@vue/test-utils'
 import { QSelect } from 'quasar/dist/types/index'
-import Vue, { VueConstructor } from 'vue'
+import Vue, { FunctionalComponentOptions } from 'vue'
+import { ComponentOptions } from 'vue/types/options'
 import { Vue as VueType } from 'vue/types/vue'
 import ChaiExpect = Chai.ExpectStatic
 
-export function eMount<V extends VueType>(component: VueConstructor<V>, options?: MountOptions<V>): IEWrapper<V> {
+export function eMount<V extends Vue>(component: VueClass<V>, options?: ThisTypedMountOptions<V>): IEWrapper<V>
+// tslint:disable-next-line:unified-signatures - this is a copy from vue/test-utils
+export function eMount<V extends Vue>(component: ComponentOptions<V>, options?: ThisTypedMountOptions<V>): IEWrapper<V>
+export function eMount(component: FunctionalComponentOptions, options?: MountOptions<Vue>): IEWrapper<Vue>
+// tslint:disable-next-line:no-any
+export function eMount(component: any, options?: any): IEWrapper<Vue> {
   return extendWrapper(mount(component, options))
 }
 
-export function eShallow<V extends VueType>(component: VueConstructor<V>, options?: MountOptions<V>): IEWrapper<V> {
+export function eShallow<V extends Vue>(component: VueClass<V>, options?: ThisTypedShallowMountOptions<V>): IEWrapper<V>
+// tslint:disable-next-line:utils max-line-length unified-signatures - this is a copy from vue/test
+export function eShallow<V extends Vue>(component: ComponentOptions<V>, options?: ThisTypedShallowMountOptions<V>): IEWrapper<V>
+export function eShallow(component: FunctionalComponentOptions, options?: ShallowMountOptions<Vue>): IEWrapper<Vue>
+// tslint:disable-next-line:no-any
+export function eShallow<V extends VueType>(component: any, options?: any): IEWrapper<V> {
   return extendWrapper(shallowMount(component, options))
 }
 
