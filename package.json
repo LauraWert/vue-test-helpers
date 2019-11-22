@@ -1,6 +1,6 @@
 {
   "name": "@laura-wert/vue-test-helpers",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "license": "MIT",
   "author": " ",
   "module": "dist/index.common.js",
